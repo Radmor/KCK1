@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import csv
 #import pandas
 from os import listdir
@@ -79,11 +80,13 @@ def create_line_plot(subplot,data):
     algorithm_names=['2cel-rs.csv','cel.csv','cel-rs.csv','rsel.csv','2cel.csv']
     generationsAmount=len(data[0])
     second_x_axis_step=int(generationsAmount/5)
+    max_games_played=500 # w tysiącach
     for algorithm in data:
         subplot.plot([item.games_played/1000 for item in algorithm],[item.average*100 for item in algorithm])
     subplot.set_ylabel('Odsetek wygranych gier [%]')
     subplot.set_xlabel('Rozegranych gier (×1000)')
     subplot.set_xticks(range(0,500+1,100))
+    subplot.set_xlim([0,max_games_played])
 
 
     new_tick_locations = range(0,generationsAmount+1,second_x_axis_step)
@@ -97,6 +100,7 @@ def create_line_plot(subplot,data):
 
 data_files_paths=list_file_paths(data_dir_path)
 print(data_files_paths)
+'''
 algorithms_names={
     '2cel-rs.csv':,
     'cel.csv':,
@@ -106,6 +110,7 @@ algorithms_names={
 
 
 }
+'''
 
 data_files=open_all_files(data_files_paths)
 raw_data=input_raw_data_from_all_files(data_files)
